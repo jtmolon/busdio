@@ -1,0 +1,37 @@
+Busdio - Real time information for Dublin Bus
+
+API docs: https://data.dublinked.ie/dataset/c9df9a0b-d17a-40ff-a5d4-01da0cf08617/resource/4b9f2c4f-6bf5-4958-a43a-f12dab04cf61/download/rtpirestapispecification.pdf
+
+Components:
+-REST API
+    receives requests for stop real time information
+    /GET
+        /stopinfo - returns stop info
+            params:
+                stopid: id of the stop (add multiple stops as well)
+                routes: desired routes (can query for more that one route?)
+        /favorites - returns my saved stops
+            params:
+                userid: user id
+    /POST
+        /favorites - saves stops to my saved stops (favorites)
+            params:
+                userid: user id
+                stops: list of stops
+        /alert - insert alert
+            params:
+                userid: user id
+                datetime: date and time of alert
+                advance: how many minutes before datetime alert should be fired
+                stopid: stop id to monitor
+                routes: routes to monitor
+
+-DB - relational database
+    Tables:
+        user
+        route
+        stop
+        favorites
+        alert
+
+-UI - UI stuff to show the information in a nice way
